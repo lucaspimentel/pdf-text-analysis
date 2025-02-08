@@ -1,5 +1,8 @@
 fitz==0.0.1.dev2
+gensim==4.3.3
+keybert==0.9.0
 matplotlib==3.10.0
+nltk==3.9.1
 numpy==2.2.2
 pdfminer.six==20231228
 pdfplumber==0.11.5
