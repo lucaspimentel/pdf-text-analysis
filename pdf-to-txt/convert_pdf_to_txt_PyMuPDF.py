@@ -1,18 +1,17 @@
 import os
-import PyPDF2
+import fitz  # PyMuPDF
 
 
 def pdf_to_text(input_file):
-    extracted_text = ""
+    pdf_document = fitz.open(input_file)
+    pdf_text = ""
 
-    with open(input_file, "rb") as file:
-        reader = PyPDF2.PdfReader(file)
+    for page_num in range(len(pdf_document)):
+        page = pdf_document.load_page(page_num)
+        pdf_text += page.get_text("text")  # Extract text in plain format
 
-        for page_num in range(len(reader.pages)):
-            page = reader.pages[page_num]
-            extracted_text += page.extract_text()
+    return pdf_text
 
-    return extracted_text
 
 def process_pdfs_in_directory(input_directory, output_directory):
     os.makedirs(output_directory, exist_ok=True)
@@ -30,6 +29,6 @@ def process_pdfs_in_directory(input_directory, output_directory):
                 f.write(text)
 
 
-INPUT_DIRECTORY = "INPUT_PATH"
-OUTPUT_DIRECTORY = "OUTPUT_PATH\\PyPDF2"
+INPUT_DIRECTORY = "D:\\source\\lucaspimentel\\pdf-text-analysis\\input"
+OUTPUT_DIRECTORY = "D:\\source\\lucaspimentel\\pdf-text-analysis\\output\\PyMuPDF"
 process_pdfs_in_directory(INPUT_DIRECTORY, OUTPUT_DIRECTORY)

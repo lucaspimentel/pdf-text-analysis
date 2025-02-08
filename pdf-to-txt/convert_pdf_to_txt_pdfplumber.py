@@ -1,9 +1,17 @@
 import os
-from pdfminer.high_level import extract_text
+import pdfplumber
 
 
 def pdf_to_text(input_file):
-    return extract_text(input_file)
+    full_text = ""
+    found_line = False
+
+    with pdfplumber.open(input_file) as pdf:
+        for page in pdf.pages:
+            text = page.extract_text()
+            full_text += text
+
+    return full_text
 
 
 def process_pdfs_in_directory(input_directory, output_directory):
@@ -22,6 +30,6 @@ def process_pdfs_in_directory(input_directory, output_directory):
                 f.write(text)
 
 
-INPUT_DIRECTORY = "INPUT_PATH"
-OUTPUT_DIRECTORY = "OUTPUT_PATH\\pdfminer"
+INPUT_DIRECTORY = "D:\\source\\lucaspimentel\\pdf-text-analysis\\input"
+OUTPUT_DIRECTORY = "D:\\source\\lucaspimentel\\pdf-text-analysis\\output\\pdfplumber"
 process_pdfs_in_directory(INPUT_DIRECTORY, OUTPUT_DIRECTORY)

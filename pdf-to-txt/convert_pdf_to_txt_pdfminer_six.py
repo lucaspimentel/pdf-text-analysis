@@ -1,26 +1,9 @@
 import os
-import subprocess
+from pdfminer.high_level import extract_text
 
 
 def pdf_to_text(input_file):
-    pdftotext_path = os.path.join(
-        os.path.expanduser("~"),
-        "Downloads",
-        "xpdf-tools-win-4.05",
-        "bin64",
-        "pdftotext.exe",
-    )
-    if not os.path.exists(pdftotext_path):
-        raise FileNotFoundError(f"pdftotext.exe not found at {pdftotext_path}")
-
-    output_file = input_file.replace(".pdf", ".txt")
-    subprocess.run(
-        [pdftotext_path, "-nopgbrk", "-raw", "-enc", "UTF-8", input_file, output_file],
-        check=True,
-    )
-
-    with open(output_file, "r", encoding="utf-8") as f:
-        return f.read()
+    return extract_text(input_file)
 
 
 def process_pdfs_in_directory(input_directory, output_directory):
@@ -39,6 +22,6 @@ def process_pdfs_in_directory(input_directory, output_directory):
                 f.write(text)
 
 
-INPUT_DIRECTORY = "INPUT_PATH"
-OUTPUT_DIRECTORY = "OUTPUT_PATH\\xpdf"
+INPUT_DIRECTORY = "D:\\source\\lucaspimentel\\pdf-text-analysis\\input"
+OUTPUT_DIRECTORY = "D:\\source\\lucaspimentel\\pdf-text-analysis\\output\\pdfminer"
 process_pdfs_in_directory(INPUT_DIRECTORY, OUTPUT_DIRECTORY)

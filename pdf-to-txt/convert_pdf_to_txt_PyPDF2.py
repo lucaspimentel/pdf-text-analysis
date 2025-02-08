@@ -1,18 +1,18 @@
 import os
-import pdfplumber
+import PyPDF2
 
 
 def pdf_to_text(input_file):
-    full_text = ""
-    found_line = False
+    extracted_text = ""
 
-    with pdfplumber.open(input_file) as pdf:
-        for page in pdf.pages:
-            text = page.extract_text()
-            full_text += text
+    with open(input_file, "rb") as file:
+        reader = PyPDF2.PdfReader(file)
 
-    return full_text
+        for page_num in range(len(reader.pages)):
+            page = reader.pages[page_num]
+            extracted_text += page.extract_text()
 
+    return extracted_text
 
 def process_pdfs_in_directory(input_directory, output_directory):
     os.makedirs(output_directory, exist_ok=True)
@@ -30,6 +30,6 @@ def process_pdfs_in_directory(input_directory, output_directory):
                 f.write(text)
 
 
-INPUT_DIRECTORY = "INPUT_PATH"
-OUTPUT_DIRECTORY = "OUTPUT_PATH\\pdfplumber"
+INPUT_DIRECTORY = "D:\\source\\lucaspimentel\\pdf-text-analysis\\input"
+OUTPUT_DIRECTORY = "D:\\source\\lucaspimentel\\pdf-text-analysis\\output\\PyPDF2"
 process_pdfs_in_directory(INPUT_DIRECTORY, OUTPUT_DIRECTORY)
