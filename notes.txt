@@ -1,0 +1,5 @@
+Pdfminer: 3
+Pdfplumber: 1
+PyMuPDF: 4
+PyPDF2: 1
+Xpdf: 5
