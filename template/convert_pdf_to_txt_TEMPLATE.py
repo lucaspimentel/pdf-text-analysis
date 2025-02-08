@@ -22,5 +22,5 @@ def process_pdfs_in_directory(input_directory, output_directory):
 
 
 INPUT_DIRECTORY = "INPUT_PATH"
-OUTPUT_DIRECTORY = "OUTPUTPATH\\libname"
+OUTPUT_DIRECTORY = "OUTPUT_PATH\\libname"
 process_pdfs_in_directory(INPUT_DIRECTORY, OUTPUT_DIRECTORY)
