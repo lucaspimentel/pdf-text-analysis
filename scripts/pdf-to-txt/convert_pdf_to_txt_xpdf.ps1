@@ -26,7 +26,7 @@ if (-not (Test-Path $inputDirectory)) {
 }
 
 # Specify the path to pdftotext.exe
-$pdftotextPath = "${env:USERPROFILE}\\Downloads\\xpdf-tools-win-4.05\\bin64\\pdftotext.exe"
+$pdftotextPath = "${env:USERPROFILE}\\scoop\\shims\\pdftotext.exe"
 
 # Loop through each PDF file in the input directory
 Get-ChildItem -Path $inputDirectory -Filter "*.pdf" | ForEach-Object {

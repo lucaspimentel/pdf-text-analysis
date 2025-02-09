@@ -6,7 +6,7 @@ import re
 from keybert import KeyBERT
 
 # 1) Specify the folder that contains your .txt files
-folder_path = "D:\\source\\lucaspimentel\\pdf-text-analysis\\output\\xpdf"
+folder_path = "D:\\source\\lucaspimentel\\pdf-text-analysis\\input\\txt"
 
 # Specify the Sentence-BERT model to use
 model_name = 'all-mpnet-base-v2' # 'all-MiniLM-L6-v2'
